@@ -1,6 +1,7 @@
 /*
 YEAR: 2023
 CONTENT: C Language Exercises for Laboratory Training
+AUTHOR: Dragos Vacariu
 */
 
 #include <stdio.h> // used to access standard input/output C functions: printf, scanf, etc.
