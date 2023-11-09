@@ -1,0 +1,3 @@
+The sleep() function in C returns 0 if the requested time has elapsed. 
+Due to signal transmission sleep() returns the unslept quantity, 
+a difference between the requested time to sleep()  and the time it actually slept in seconds.
