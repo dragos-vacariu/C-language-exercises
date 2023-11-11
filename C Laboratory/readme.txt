@@ -1,1 +1,1 @@
-- project developed using Toolchain GCC.
+- workspace for Toolchain GCC

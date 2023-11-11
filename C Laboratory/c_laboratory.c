@@ -1,7 +1,6 @@
 /*
 YEAR: 2023
 CONTENT: C Language Exercises for Laboratory Training
-AUTHOR: Dragos Vacariu
 */
 
 #include <stdio.h> // used to access standard input/output C functions: printf, scanf, etc.
@@ -11,6 +10,7 @@ AUTHOR: Dragos Vacariu
 #include <conio.h>  // used for rand generator
 #include <time.h> // used for time seeding the number generator
 #include <unistd.h> // used to access the sleep function.
+#include <string.h> // used to access strcpy function
 
 
 /* RO: CERINTE EXERCITII PENTRU LABORATORUL DE C:
@@ -228,8 +228,225 @@ AUTHOR: Dragos Vacariu
 * --------------------------------------------------------------------------
 */
 
+/* EN: EXERCISES FOR THE C-LABORATORY:
+
+* 1. Write a function that checks if a symbol entered from the keyboard is a number [0-9] or
+* letter between [a-f] or [A-F]. Display a corresponding message if the symbol is out of range.
+* KNOWLEDGE REQUIRED: IF / SWITCH / FUNCTIONS / ASCII
+
+* ------------------------------------------------- ------------
+* 2. Write a function that reads a number from the keyboard and calculates how many digits the entered number contains.
+* Optionally calculate the sum of the digits of that number.
+* KNOWLEDGE REQUIRED: LOOPS / FUNCTIONS / CHARACTERS
+
+* ------------------------------------------------- -------------
+* 3. Write a function that adjusts the code from exercise 2 so that it uses recursion
+* instead of loops.
+* KNOWLEDGE REQUIRED: FUNCTIONS / RECURSIVITY
+
+* ------------------------------------------------- -------------
+* 4. Adjust the program from exercise 2 so that it also works for a sequence of characters: Read
+* a word / sentence of characters and calculate the number of characters in the word / sentence.
+* KNOWLEDGE REQUIRED: LOOPS / FUNCTIONS / CHARACTERS
+
+* ------------------------------------------------- -------------
+* 5. Adjust the program from exercise 1 so that it can check for a sequence of character
+* if it belongs to the interval [0-1] / [a-f] / [A-F]
+* KNOWLEDGE REQUIRED: IF / SWITCH / FUNCTII / ASCII / (ARRAYS or STRINGS or POINTERS)
+
+* ------------------------------------------------- -------------
+* 6. Write a function that reads 3 digits separately and concatenate them into an unsigned int. Only allow the user
+* to enter digits from 0-9 interval.
+* KNOWLEDGE REQUIRED: LOOPS / IF / OPERATORS
+
+* ------------------------------------------------- ------------
+* 7. Write a function to read a number from the keyboard, check if it is divisible by 16,
+* and if it is a power of 16, display the power. EX: 16, 256, 4096, 65536, 1048576.
+* KNOWLEDGE REQUIRED: LOOPS / IF / OPERATORS / ALGORITHMIC THINKING
+
+* ------------------------------------------------- ------------
+* 8. Build a program that reads an unsigned integer type number and reconstructs it in the mirror.
+* OPTIONAL: check if the number is a palindrome. EX: 121, 242, 12321.
+* KNOWLEDGE REQUIRED: LOOPS / IF / OPERATORS / ALGORITHMIC THINKING / SWITCH / FUNCTIONS
+
+* ------------------------------------------------- ------------
+* 9. Build a hexadecimal to decimal number converter.
+* KNOWLEDGE REQUIRED: LOOPS / IF / OPERATORS / ALGORITHMIC THINKING / SWITCH / FUNCTIONS
+
+* ------------------------------------------------- ------------
+* 10. Build a decimal to binary number converter.
+* KNOWLEDGE REQUIRED: LOOPS / IF / ARRAYS / OPERATORS / ALGORITHMIC THINKING / SHIFTING / BIT OPERATIONS / FUNCTIONS
+
+* ------------------------------------------------- ------------
+* 11. Write a function to negate a specific bit for a variable of type u32 / unsigned int.
+* KNOWLEDGE REQUIRED: BIT OPERATIONS / FUNCTIONS / OPERATORS / ALGORITHMIC THINKING / FUNCTIONS
+
+* ------------------------------------------------- -----------
+* 12. Write a function that reads an unsigned number from the keyboard and offers the possibility to change
+* later a digit from that number.
+* KNOWLEDGE REQUIRED: BIT OPERATIONS / FUNCTIONS
+
+* ------------------------------------------------- -----------
+* 13. Write a function that reads the content of a .txt file and calculates the number of
+* words in the file.
+* KNOWLEDGE REQUIRED: FILES / POINTERS / ARRAYS / OPERATORS / ALGORITHMIC THINKING / FUNCTIONS
+
+* ------------------------------------------------- -----------
+* 14a. Write a function that interchange the values between 2 variables: preferably without the auxiliary variable.
+* KNOWLEDGE REQUIRED: FUNCTIONS / OPERATORS / ALGORITHMIC THINKING / BITWISE OPERATORS
+
+* 14b Write a function that reads 2 3x3 matrices and offers the possibility to exchange 1 line between
+* the 2 matrices. Make the exchange without the auxiliary variable.
+* KNOWLEDGE REQUIRED: FUNCTIONS / OPERATORS / ALGORITHMIC THINKING / BITWISE OPERATORS / ARRAYS / POINTERS
+
+* ------------------------------------------------- -------------------------
+* 15. Write a function that offers the possibility of introducing a new element and/or deleting an existing element
+* from a dynamic vector. Dynamically increase/decrease the size of the final vector.
+* TERMINOLOGY:
+* DYNAMIC VECTOR = ARRAY STORED IN HEAP
+* DYNAMIC SIZE = THE SIZE CHANGES DYNAMICLY OFFERING THE POSSIBILITY OF ADDING AND DELETING AN ELEMENT
+* DYNAMIC SIZE - IS THE OPPOSITE OF FIXED SIZE. ARRAYS ARE COLLECTIONS OF FIXED SIZES.
+* KNOWLEDGE REQUIRED: FUNCTIONS / ALGORITHMIC THINKING / 2D ARRAYS / POINTERS / DOUBLE POINTERS / PASS BY REFERENCE / LOOPS
+
+* ------------------------------------------------- -------------------------
+* 16. Write a function that reads 2 matrices from the keyboard and offers the possibility to rotate the 2 matrices
+* simultaneously to the left or to the right.
+* KNOWLEDGE REQUIRED: FUNCTIONS / OPERATORS / ALGORITHMIC THINKING / ARRAYS / PASS BY REFERENCE / LOOPS
+
+* ------------------------------------------------- -------------------------
+* 17. Write a function that converts a double number to string.
+* KNOWLEDGE REQUIRED: CHAR ARRAYS, ALGORITHMIC THINKING, OPERATORS, FUNCTIONS, LOOPS
+
+* ------------------------------------------------- -------------------------
+* 18. Write a function that creates the main diagonal of a square matrix from the min elements on
+* the respective line.
+* KNOWLEDGE REQUIRED: 2D VECTORS, ALGORITHMIC THINKING, OPERATORS, FUNCTIONS, LOOPS
+
+* ------------------------------------------------- -------------------------
+* 19. Write a function that reads a square matrix of integers from a file, stores and displays it accordingly.
+* KNOWLEDGE REQUIRED: 2D VECTORS, ALGORITHMIC THINKING, OPERATORS, FUNCTIONS, LOOPS, FILES, POINTERS
+
+* ------------------------------------------------- -------------------------
+* 20. Write a function that reads a 2x3 matrix and displays the matrix and its transpose.
+* KNOWLEDGE REQUIRED: 2D VECTORS, ALGORITHMIC THINKING, OPERATORS, FUNCTIONS, LOOPS
+
+* ------------------------------------------------- -------------------------
+* 21. Write a function that reads 2 matrices and obtains their product. The line in the first matrix is multiplied by
+* the column from the second matrix.
+* KNOWLEDGE REQUIRED: 2D VECTORS, ALGORITHMIC THINKING, OPERATORS, FUNCTIONS, LOOPS
+
+* ------------------------------------------------- -------------------------
+* 22. Write a function that calculates the column with the smallest sum of elements within a matrix:
+* KNOWLEDGE REQUIRED: 2D VECTORS, MATRICES, ALGORITHMIC THINKING, OPERATORS, FUNCTIONS, LOOPS
+
+* ------------------------------------------------- -------------------------
+* 23. Create a fahrenheit to celsius / celsius to fahrenheit converter. Make it capable of entering numbers with suffix C / F
+* to determine the measurement unit to be converted.
+* KNOWLEDGE REQUIRED: ALGORITHMIC THINKING, OPERATORS, FUNCTIONS, OPERATIONS, CHAR ARRAYS
+
+* ------------------------------------------------- -------------------------
+* 24. Write a function that displays the ASCII table.
+* KNOWLEDGE REQUIRED: OPERATORS, FUNCTIONS, OPERATIONS, CAST
+
+* ------------------------------------------------- -------------------------
+* 25. Write a function that displays randomly generated integer values with a delay of 10 seconds. Display simultaneously
+* the current random value and the value from 10 seconds ago. HINT: The rand function from <conio.h> will be used
+* for the generation of random numbers, the function sleep() from <unistd.h> or Sleep() from <windows.h> will be used for measuring
+* time intervals.
+* KNOWLEDGE REQUIRED: FUNCTIONS, RANDOM GENERATORS, ALGORITHMIC THINKING, LOOPS
+
+* ------------------------------------------------- -------------------------
+* 26. Write a function that concatenates 4 chars into an unsigned int. Use int variable to display the word
+* consisting of those 4 chars.
+* KNOWLEDGE REQUIRED: FUNCTIONS, ALGORITHMIC THINKING, LOOPS, CAST, BITWISE OPERATORS
+
+* ------------------------------------------------- -------------------------
+* 27. Build an encoder for the message from a .txt file. Coding rule: the last bit from the character being read
+* will be negated, exception will do the special characters: '\n', '\0', ' '. The result will be saved in a .txt and
+* displayed in the console.
+* KNOWLEDGE REQUIRED: FUNCTIONS, ALGORITHMIC THINKING, LOOPS, BIT OPERATIONS, FILES, POINTERS
+
+* ------------------------------------------------- -------------------------
+* 28. Build a decoder for the previously coded message. Decoding rule: the last bit from the character being read
+* twill be negated, exception will do the special characters: '\n', '\0', ' '. The result will be saved in a .txt file
+* and displayed in the console.
+* KNOWLEDGE REQUIRED: FUNCTIONS, ALGORITHMIC THINKING, LOOPS, BIT OPERATIONS, FILES, POINTERS
+
+* ------------------------------------------------- -------------------------
+* 29. Write a function that reads a message. The message will be divided into words, the words will be displayed iteratively
+* as follows: Example: Anna has apples
+* 1. A h a
+* 2. An ha ap
+* 3. Ann has app
+* 4. Anna has appl
+* 5. Anna has apple
+* 6. Anna has apples
+* HINT: 3 nested loops will be needed.
+* KNOWLEDGE REQUIRED: FUNCTIONS, ALGORITHMIC THINKING, LOOPS, CHAR ARRAYS,
+
+* ------------------------------------------------- -------------------------
+* 30. Write a function that checks if a string contains a specified word \ sequence of characters \ substring.
+* KNOWLEDGE REQUIRED: FUNCTIONS, ALGORITHMIC THINKING, LOOPS, CHAR ARRAYS, CHAR POINTERS,
+
+* ------------------------------------------------- -------------------------
+* 31. Write a function that filters a string \ deletes a specified word \ character sequence from the string.
+* KNOWLEDGE REQUIRED: FUNCTIONS, ALGORITHMIC THINKING, LOOPS, CHAR ARRAYS, CHAR POINTERS, PASS BY REFERENCE, MEMORY ALLOCATION
+
+* ------------------------------------------------- -------------------------
+* 32. Write a function that reads and filters the content of a given .xml file. FILTERING RULE: to delete
+* the tags and to display only the relevant information.
+* KNOWLEDGE REQUIRED: FUNCTIONS, LOOPS, CHAR ARRAYS, CHAR POINTERS, FILES
+
+* ------------------------------------------------- -------------------------
+* 33. Write a function that converts a string into an int. RULE: From the string passed as a parameter
+* the only characters to be considered for conversion are within [0-9] interval.
+* KNOWLEDGE REQUIRED: FUNCTIONS, LOOPS, CHAR ARRAYS, CHAR POINTERS
+
+* ------------------------------------------------- -------------------------
+* 34. Adjust / extend the functionality from Exercise 31 so that the information filtered from the .xml file is
+* stored in a vector of structures. The Age information should be stored as an integer.
+* KNOWLEDGE REQUIRED: FUNCTIONS, LOOPS, CHAR ARRAYS, CHAR POINTERS, FILES \ STRUCTURES
+
+* ------------------------------------------------- -------------------------
+* 35. Write a function that offers the possibility to sort the vector of structures from Exercise 34 in ascending order
+* depending on age.
+* KNOWLEDGE REQUIRED: FUNCTIONS, LOOPS, CHAR ARRAYS, POINTERS, STRUCTURES, SORTING
+
+* ------------------------------------------------- -------------------------
+* 36. Extend the functionality from Exercise 34,35 so that the sorted content of the structure is
+* saved in a .html document using a table as a form of structuring. Every piece of information must be written
+* in its own column.
+* KNOWLEDGE REQUIRED: FUNCTIONS, LOOPS, CHAR ARRAYS, POINTERS, STRUCTURES, HTML, FILES
+
+* ------------------------------------------------- -------------------------
+* 37. Write a function that calculates the number of occurrences of a word / sequence of character / substring within a
+* string.
+* KNOWLEDGE REQUIRED: CHAR ARRAYS, FUNCTIONS, POINTERS, LOOPS,
+
+* ------------------------------------------------- -------------------------
+* 38. Write a function that divides a number by a value without using the division operator. Alternatively
+* write a function that multiplies a number by a value without using the multiply operator.
+* KNOWLEDGE REQUIRED: OPERATORS, VARIABLES, OPERATIONS, FUNCTIONS, LOOPS
+
+* ------------------------------------------------- -------------------------
+* 39. To create a linked list of integer elements. Use a loop to add a custom number of elements
+* and offer the possibility to exit the loop at the user's command, and to display all the elements inserted within that loop.
+* TERMINOLOGY: The chained list is a complex data type, which consists of a structure with at least 2 elements: value and pointer
+* to the next element. Memory will be allocated dynamically for each element added to the list. The main benefit of a linked-list
+* consists in the possibility of adding a variable number of elements, being able to delete or add an element without making copies
+* or exchanges, but only by changing the addresses of the assigned pointers for the next / previous element.
+* KNOWLEDGE REQUIRED: STRUCTURES, POINTERS, LOOPS, DYNAMIC ALLOCATION, VARIABLES
+
+* ------------------------------------------------- -------------------------
+* 40. To identify the problems in a given code.
+* KNOWLEDGE REQUIRED:
+
+* ------------------------------------------------- -------------------------
+*/
+
 #define CHAR_ARRAY_SIZE 20 //some dimension for the char arrays
-#define PRINT_CERINTA 1 //define to specify if the enunciation of the exercise should be displayed.
+#define MAX_FILEPATH_SIZE 1000 //  the maximum length for the filepath
+#define EXE_RELATIVE_DIRECTORY_PATH "\\Debug" //name of the directory which hosts the executable
 
 #define NR_XML_TAGS 6 //dimension for the xml_tags array
 const char* xml_tags[NR_XML_TAGS] = {"<name>", "</name>", "<age>", "</age>", "<hiringDate>", "</hiringDate>"};
@@ -241,6 +458,9 @@ struct XML_Database_Content{
 	char hiringDate[CHAR_ARRAY_SIZE]; //use array to store the name
 };
 unsigned int xml_db_index = 0; // variable that will store the size of the dynamic array storing the XML elements reads from the file.
+unsigned int menu_language=0; // variable to store the language of the messages being displayed
+
+char ROOT_DIRECTORY[MAX_FILEPATH_SIZE] = {'\0'};
 
 void readCheckSimbolString();
 unsigned int calculateNoOfCharsFromMessage(const char message[]);
@@ -336,22 +556,80 @@ float divideWoDivisionOp(int number, int divider);
 
 void createAddElementsOnLinkedList();
 
-void RezolvareCerinta(unsigned int numar_cerinta);
+void printRomanianMenu();
+void printEnglishMenu();
+
+void createRelativePathToFile(char source_array [], char filename[]);
+
+void FindExerciseSolution(unsigned int exercise_number);
 
 int main(void)
 {
 	setbuf(stdout, NULL); //synchronize the console with the output messages - needed for Toolchain_GCC.
-	int command;
+	unsigned int exercise_number;
+	unsigned int command;
 
-	RezolvareCerinta(39);
+	char * root = getcwd(NULL, 0); // get the root directory
+	if (root != NULL)
+	{
+		unsigned int index = 0;
+		while(root[index] != '\0' && index <= MAX_FILEPATH_SIZE)
+		{
+			ROOT_DIRECTORY[index] = root[index];
+			index++;
+		}
+	}
 
-    //Keep the console open after the program ends so that I can see the output.
-	//Useful if running this executable outside the Toolchain / Compiler.
-    scanf("%d", &command);
+	printf("Choose language: \n");
+	printf("1. Limba Romana\n");
+	printf("2. English Language.\n\n");
+	while(menu_language!=1 && menu_language!=2)
+	{
+		printf("Input: ");
+		fflush(stdin);
+		scanf("%d", &menu_language);
+		printf("\n");
+	}
+	while(true)
+	{
+		printf("-------------------------------------------------------------\n");
+		printf("PATH: %s\n\n", ROOT_DIRECTORY);
+		if(menu_language == 1)
+		{
+			printf("LIMBA: Romana\n");
+			printRomanianMenu();
+		}
+		else
+		{
+			printf("LANGUAGE: English\n");
+			printEnglishMenu();
+		}
+		printf("\nEnter exercise number [1-39]. Press 0 to exit. \n");
+		printf("Input: ");
+		fflush(stdin);
+		scanf("%d", &exercise_number);
+		printf("\n");
+		if (exercise_number == 0)
+		{
+			break;
+		}
+		else
+		{
+			FindExerciseSolution(exercise_number);
+		}
+		printf("Press any key to continue. The screen will be cleared.\n");
+		fflush(stdin);
+		scanf("%d", &command);
+		system("cls"); // clear the screen
+	}
+	if(menu_language == 1)
+		printf("Program terminat.\n");
+	else
+		printf("Program exited.\n");
     return 0;
 }
 
-void RezolvareCerinta(unsigned int numar_cerinta)
+void FindExerciseSolution(unsigned int exercise_number)
 {
 	/*
 	RO:
@@ -360,87 +638,135 @@ void RezolvareCerinta(unsigned int numar_cerinta)
 	EN:
 	This function will call the functions which handle the solutioning of the exercise number passed as argument.
 	*/
-	switch(numar_cerinta)
+	bool isExerciseFound = true;
+	switch(exercise_number)
 	{
 		case 1:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
-				printf("1. Sa se scrie o functie care sa verifice daca un simbol introdus de la tastatura, este cifra [0-9] "
-					"sau\n litera intre [a-f] sau [A-F]. Sa se afiseze mesaj corespunzator daca simbolul este in afara intervalului.\n"
+				printf("1. Sa se scrie o functie care sa verifice daca un simbol introdus de la tastatura, este cifra [0-9]"
+					" sau litera intre [a-f] sau [A-F]. Sa se afiseze mesaj corespunzator daca simbolul este in afara intervalului.\n"
 					"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("1. Write a function that checks if a symbol entered from the keyboard is a number [0-9] or"
+						" letter between [a-f] or [A-F]. Display a corresponding message if the symbol is out of range.\n"
+						"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			readCheckSimbolString();
 			break;
 		}
 		case 2:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
-				printf("2. Sa se scrie o functie care citeste de la tastatura un numar si sa calculeze cate cifre contine numarul \n"
+				printf("2. Sa se scrie o functie care citeste de la tastatura un numar si sa calculeze cate cifre contine numarul"
  						" introdus. Optional sa calculeze si suma cifrelor acelui numar.\n"
 					"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("2. Write a function that reads a number from the keyboard and calculates how many digits the entered number contains."
+				        " Optionally calculate the sum of the digits of that number.\n"
+				    "-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			readCheckNoOfDigits(true);
 			break;
 		}
 		case 3:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
-				printf("3. Sa se scrie o functie care sa ajusteze codul de la cerinta 2 astfel incat sa foloseasca recursivitate \n"
-							" in loc-ul buclelor.\n"
+				printf("3. Sa se scrie o functie care sa ajusteze codul de la cerinta 2 astfel incat sa foloseasca recursivitate in loc-ul buclelor.\n"
+					"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("3. Write a function that adjusts the code from exercise 2 so that it uses recursion instead of loops.\n"
 					"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			readCheckNoOfDigits(false);
 			break;
 		}
 		case 4:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
-				printf("4. Sa se ajusteze programul de la cerinta 2 astfel incat sa functioneze si pentru un sir de caractere: Se citeste\n"
+				printf("4. Sa se ajusteze programul de la cerinta 2 astfel incat sa functioneze si pentru un sir de caractere: Se citeste"
 						" un cuvant / sir de caractere si sa se calculeze numarul caracterelor din cuvant / sir.\n"
+					"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("4. Adjust the program from exercise 2 so that it also works for a sequence of characters: Read"
+						" a word / sentence of characters and calculate the number of characters in the word / sentence.\n"
 					"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			char message[CHAR_ARRAY_SIZE] = {'\0'};
 			printf("Enter the symbol / message: ");
 			setbuf(stdout, NULL);
+			fflush(stdin);
 			scanf("%s", message);
 			printf("Number of chars: %d\n", calculateNoOfCharsFromMessage(message));
 			break;
 		}
 		case 5:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
-				printf("5. Sa se ajusteze programul de la cerinta 1 in asa fel incat sa poata sa verifice pentru un sir de simboluri\n"
+				printf("5. Sa se ajusteze programul de la cerinta 1 in asa fel incat sa poata sa verifice pentru un sir de simboluri"
 						" daca are loc apartenenta la intervalul [0-1] / [a-f] / [A-F]\n"
+					"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("5. Adjust the program from exercise 1 so that it can check for a sequence of character"
+						" if it belongs to the interval [0-1] / [a-f] / [A-F]\n"
 					"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			readCheckSimbolString();
 			break;
 		}
 		case 6:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
-				printf("6. Sa se scrie o functie care citeste separat 3 cifre si sa le concateneze intr-un unsigned int. Sa se permita doar\n"
+				printf("6. Sa se scrie o functie care citeste separat 3 cifre si sa le concateneze intr-un unsigned int. Sa se permita doar"
 						" introducerea cifrelor 0-9.\n"
+					"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("6. Write a function that reads 3 digits separately and concatenate them into an unsigned int. Only allow the user"
+						" to enter digits from 0-9 interval.\n"
 					"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			DigitConcatenate();
 			break;
 		}
 		case 7:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
 				printf("7. Sa se scrie o functie care sa citeasca un numar de tastatura, sa se verifice daca este divizibil cu 16,\n"
 						" iar daca este putere a lui 16 sa se afiseze puterea. EX: 16, 256, 4096, 65536, 1048576.\n"
+					"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("7. Write a function to read a number from the keyboard, check if it is divisible by 16,"
+						" and if it is a power of 16, display the power. EX: 16, 256, 4096, 65536, 1048576.\n"
 					"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			CheckNoDivisible16();
 			break;
 		}
 		case 8:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
 				printf("8. Sa se construiasca un program care sa citeasca un numar de tip intreg unsigned si sa il reconstruiasca in oglinda.\n"
 						" OPTIONAL: sa se verifice daca numarul este palindrom. EX:121, 242, 12321.\n"
+					"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("8. Build a program that reads an unsigned integer type number and reconstructs it in the mirror."
+						" OPTIONAL: check if the number is a palindrome. EX: 121, 242, 12321.\n"
 					"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 		    unsigned int number;
@@ -450,212 +776,328 @@ void RezolvareCerinta(unsigned int numar_cerinta)
 			unsigned int revNum = reverseNumber(number);
 			if (revNum == number)
 			{
-				printf("The number is polindrom. \n");
+				printf("The number is polindrome. \n");
 			}
 			break;
 		}
 		case 9:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
 				printf("9. Sa se construiasca un convertor de numere hexadecimal to decimal.\n"
+					"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("9. Build a hexadecimal to decimal number converter.\n"
 					"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			ConvertFromHexaToDecimal();
 			break;
 		}
 		case 10:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
 				printf("10. Sa se construiasca un convertor de numere decimal to binary.\n"
+					"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("10. Build a decimal to binary number converter.\n"
 					"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			ConversionOfDecimalToBinary();
 			break;
 		}
 		case 11:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
-				printf("11. Sa se scrie o functie pentru negarea unui bit specific\n"
+				printf("11. Sa se scrie o functie pentru negarea unui bit specific"
 						" pentru o variabila de tip u32 / unsigned int.\n"
+					"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("11. Write a function to negate a specific bit for a variable of type u32 / unsigned int.\n"
 					"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			NegateSpecificBit();
 			break;
 		}
 		case 12:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
 				printf("12. Sa se scrie o functie care sa citeasca un numar unsigned de la tastatura si sa ofere posibilitatea de a schimba\n"
 						" ulterior o cifra din acel numar.\n"
+					"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("12. Write a function that reads an unsigned number from the keyboard and offers the possibility to change"
+						" later a digit from that number.\n"
 					"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			readNumberAndChangeDigit();
 			break;
 		}
 		case 13:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
 				printf("13. Sa se scrie o functie care sa citeasca continutul dintr-un fisier .txt si sa se calculeze numarul \n"
 						" cuvintelor din fisier. \n"
+					"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("13. Write a function that reads the content of a .txt file and calculates the number of words in the file.\n"
 					"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			ReadCalculateFileWords();
 			break;
 		}
 		case 14:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
-				printf("14. Sa se scrie o functie care sa citeasca 2 matrici 3x3 si sa ofere posibilitatea de a interschimba 1 linie intre \n"
-						" cele 2 matrici. Sa se faca interschimbarea fara variabila auxiliara \n"
+				printf("14. Sa se scrie o functie care sa citeasca 2 matrici 3x3 si sa ofere posibilitatea de a interschimba 1 linie intre"
+						" cele 2 matrici. Sa se faca interschimbarea fara variabila auxiliara.\n"
+					"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("14. Write a function that reads 2 3x3 matrices and offers the possibility to exchange 1 line between"
+						" the 2 matrices. Make the exchange without the auxiliary variable.\n"
 					"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			ReadInterchangeMatrixLine();
 			break;
 		}
 		case 15:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
-				printf("15. Sa se scrie o functie care ofera posibilitatea introducerii unui nou element intr-un vector dinamic. Sa se creasca\n"
+				printf("15. Sa se scrie o functie care ofera posibilitatea introducerii unui nou element intr-un vector dinamic. Sa se creasca"
 						" dinamic dimensiunea vectorului final.\n"
+					"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("15. Write a function that offers the possibility of introducing a new element and/or deleting an existing element"
+						" from a dynamic vector. Dynamically increase/decrease the size of the final array.\n"
 					"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			readArray();
 			break;
 		}
 		case 16:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
 				printf("16. Sa se scrie o functie care citeste 2 matrici de la tastatura si sa ofere posibilitatea de a roti cele 2 matrici\n"
 						" simultan la stanga sau la dreapta.\n"
+					"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("16.Write a function that reads 2 matrices from the keyboard and offers the possibility to rotate the 2 matrices"
+						" simultaneously to the left or to the right.\n"
 					"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			readRotateMatrices();
 			break;
 		}
 		case 17:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
 				printf("17. Sa se scrie o functie care converteste un numar double to string. \n"
+				"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("17. Write a function that converts a double number to string. \n"
 				"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			readConvertDoubleToString();
 			break;
 		}
 		case 18:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
-				printf("18. Sa se scrie o functie care formeaza diagonala principala unei matrici patratice din elementele min de pe\n"
+				printf("18. Sa se scrie o functie care formeaza diagonala principala unei matrici patratice din elementele min de pe"
 						"linia respectiva.\n"
+				"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			if (menu_language == 1)
+			{
+				printf("18. Write a function that creates the main diagonal of a square matrix from the min elements on"
+						"the respective line.\n"
 				"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			readFormMatrixDiagonalFromMinRowElem();
 			break;
 		}
 		case 19:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
 				printf("19. Sa se scrie o functie care citeste o matrice patratica de numere intregi dintr-un fisier"
 						" si o stocheaza si afiseaza corespunzator."
+				"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("19. Write a function that reads a square matrix of integers from a file, stores and displays it accordingly.\n"
 				"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			readMatrixFromFile();
 			break;
 		}
 		case 20:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
 				printf("20. Sa se scrie o functie care citeste o matrice 2x3 si afiseaza matricea si transpusa acesteia.\n"
+				"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("20. Write a function that reads a 2x3 matrix and displays the matrix and its transpose.\n"
 				"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			transposeOf2x3Matrix();
 			break;
 		}
 		case 21:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
-				printf("21. Sa se scrie o functie care citeste 2 matrici obtine produsul lor. Linia din prima matrice se inmulteste cu\n"
+				printf("21. Sa se scrie o functie care citeste 2 matrici obtine produsul lor. Linia din prima matrice se inmulteste cu"
 						" coloana din a doua matrice.\n"
+				"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("21. Write a function that reads 2 matrices and obtains their product. The line in the first matrix is multiplied by"
+						" the column from the second matrix.\n"
 				"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			readMultiplyTwoSquareMatrices();
 			break;
 		}
 		case 22:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
-				printf("22. Sa se scrie o functie care calculeaza coloana cu suma cea mai mica a elementelor dintr-o matrice\n"
+				printf("22. Sa se scrie o functie care calculeaza coloana cu suma cea mai mica a elementelor dintr-o matrice.\n"
+				"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("22. Write a function that calculates the column with the smallest sum of elements within a matrix.\n"
 				"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			readCalculateMatrixSmallestColumn();
 			break;
 		}
 		case 23:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
 				printf("23. Sa se creeze un convertor fahrenheit to celsius / celsius to fahrenheit. Sa se poata introduca numere cu surfix C / F\n"
 						" pentru determinarea unitatii de masura.\n"
+				"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("23. Create a fahrenheit to celsius / celsius to fahrenheit converter. Make it capable of entering numbers with suffix C / F"
+						" to determine the measurement unit to be converted.\n"
 				"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			convertFahrenheitCelciusORViceversa();
 			break;
 		}
 		case 24:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
 				printf("24. Sa se scrie o functie care sa afiseze tabelul ASCII.\n"
+				"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("24. Write a function that displays the ASCII table.\n"
 				"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			ASCIItableDisplay();
 			break;
 		}
 		case 25:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
-				printf("25. Sa se scrie o functie care afiseaza cu delay de 10 secunde valori de tip int generate aleator. Sa se afiseze\n"
-						" concomitent valoarea aleatoare curenta si valoarea intarziata din urma cu 10 secunde. HINT: Se va folosi functia\n"
-						" rand din <conio.h> pentru generarea de numere aleatoare, se va folosi functia sleep() din <unistd.h> sau Sleep()\n"
+				printf("25. Sa se scrie o functie care afiseaza cu delay de 10 secunde valori de tip int generate aleator. Sa se afiseze"
+						" concomitent valoarea aleatoare curenta si valoarea intarziata din urma cu 10 secunde. HINT: Se va folosi functia"
+						" rand din <conio.h> pentru generarea de numere aleatoare, se va folosi functia sleep() din <unistd.h> sau Sleep()"
 						"din <windows.h> pentru masurarea intervalelor de timp.\n"
 				"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
+			else
+			{
+				printf("25. Write a function that displays randomly generated integer values with a delay of 10 seconds. Display simultaneously"
+						" the current random value and the value from 10 seconds ago. HINT: The rand function from <conio.h> will be used"
+						" for the generation of random numbers, the function sleep() from <unistd.h> or Sleep() from <windows.h> will be used for measuring"
+						" time intervals.\n"
+				"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+
 			currentAndDelayedRand();
 			break;
 		}
 		case 26:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
-				printf("26. Sa se scrie o functie care concateneaza 4 chars intr-un unsigned int. Sa se foloseasca int-ul pentru afisarea\n"
+				printf("26. Sa se scrie o functie care concateneaza 4 chars intr-un unsigned int. Sa se foloseasca int-ul pentru afisarea"
 						" cuvantului format din cele 4 chars.\n"
+				"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("26. Write a function that concatenates 4 chars into an unsigned int. Use int variable to display the word"
+						" consisting of those 4 chars.\n"
 				"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			storeCharsIntoInt();
 			break;
 		}
 		case 27:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
 				printf("27. Sa se construiasca un codificator pentru mesajul dintr-un fisier .txt. Regula codarii: se va nega ultimul bit al\n"
 						" caracterului citit, exceptie facand caracterele speciale: '\\n', '\\0', ' '. Rezultatul va fi salvat intr-un .txt si\n"
 						" afisat in consola.\n"
 				"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
+			else
+			{
+				printf("27. Build an encoder for the message from a .txt file. Coding rule: the last bit from the character being read"
+						" will be negated, exception will do the special characters: '\\n', '\\0', ' '. The result will be saved in a .txt and"
+						" displayed in the console.\n"
+				"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
 			readEncodeContentOfTxt();
 			break;
 		}
 		case 28:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
-				printf("28. Sa se construiasca un decodor pentru mesajul codat anterior. Regula decodarii: se va nega ultimul bit al\n"
-						" caracterului citit, exceptie facand caracterele speciale: '\\n', '\\0', ' '. Rezultatul va fi salvat intr-un .txt\n"
+				printf("28. Sa se construiasca un decodor pentru mesajul codat anterior. Regula decodarii: se va nega ultimul bit al"
+						" caracterului citit, exceptie facand caracterele speciale: '\\n', '\\0', ' '. Rezultatul va fi salvat intr-un .txt"
 						" si afisat in consola.\n"
+				"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("28. Build a decoder for the previously coded message. Decoding rule: the last bit from the character being read"
+						" will be negated, exception will do the special characters: '\\n', '\\0', ' '. The result will be saved in a .txt file"
+						" and displayed in the console."
 				"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			readDecodeContentFromTxt();
 			break;
 		}
 		case 29:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
-				printf("29. Sa se scrie o functie care citeste un mesaj. Mesajul va fi impartit in cuvinte, cuvintele vor fi afisare pe iteratii\n"
+				printf("29. Sa se scrie o functie care citeste un mesaj. Mesajul va fi impartit in cuvinte, cuvintele vor fi afisare pe iteratii"
 						" dupa cum urmeaza: Exemplu: Ana are mere\n"
 						" 1. A a m\n"
 						" 2. An ar me\n"
@@ -664,32 +1106,61 @@ void RezolvareCerinta(unsigned int numar_cerinta)
 						" HINT: vor fi necesare 3 nested loops.\n"
 				"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
+			else
+			{
+				printf("29. Write a function that reads a message. The message will be divided into words, the words will be displayed iteratively"
+						" as follows: Example: Anna has apples\n"
+						" 1. A h a\n"
+						" 2. An ha ap\n"
+						" 3. Ann has app\n"
+						" 4. Anna has appl\n"
+						" 5. Anna has apple\n"
+						" 6. Anna has apples\n"
+						" HINT: 3 nested loops will be needed.\n"
+				"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
 			readSplitMessageIteratedPrint();
 			break;
 		}
 		case 30:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
 				printf("30. Sa se scrie o functie care verifica daca un string contine un cuvant \\ sir de caractere specificat.\n"
+				"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("30. Write a function that checks if a string contains a specified word \\ sequence of characters \\ substring.\n"
 				"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			readCheckElementWithinString();
 			break;
 		}
 		case 31:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
 				printf("31. Sa se scrie o functie care filtreaza un string \\ sterge dintr-un string un cuvant \\ sir de caractere specificat.\n"
+				"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("31. Write a function that filters a string \\ deletes a specified word \\ character sequence from the string.\n"
 				"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			readFilterString();
 			break;
 		}
 		case 32:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
 				printf("32. Sa se scrie o functie care citeste si filtreaza continutul dintr-un fisier .xml dat. REGULA FILTRARII: sa se stearga\n"
 						" tag-urile si sa se afiseze doar informatia relevanta.\n"
+				"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("32. Write a function that reads and filters the content of a given .xml file. FILTERING RULE: to delete"
+						" the tags and to display only the relevant information.\n"
 				"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			readFilterXMLFileContent();
@@ -697,24 +1168,37 @@ void RezolvareCerinta(unsigned int numar_cerinta)
 			break;
 		}
 		case 33:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
-				printf("33. Sa se scrie o functie care sa converteasca un string in int. REGULA: se vor lua in considerare doar caracterele\n"
+				printf("33. Sa se scrie o functie care sa converteasca un string in int. REGULA: se vor lua in considerare doar caracterele"
 						" [0-9] din string-ul pasat ca parametru.\n"
+				"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("33. Write a function that converts a string into an int. RULE: From the string passed as a parameter"
+						" the only characters to be considered for conversion are within [0-9] interval.\n"
 				"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			char message[CHAR_ARRAY_SIZE] = {'\0'};
 			printf("Enter a message: ");
+			fflush(stdin);
 			scanf("%s", message);
 			int value = convertStringToInt(&message[0]);
 			printf("The integer converted value: %d\n", value);
 			break;
 		}
 		case 34:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
-				printf("34. Sa se ajusteze extinda functionalitatea de la Cerinta 31 astfel incat informatia filtrata din fisierul .xml sa\n"
+				printf("34. Sa se ajusteze extinda functionalitatea de la Cerinta 31 astfel incat informatia filtrata din fisierul .xml sa"
 						" fie stocata intr-un vector de structuri. Informatia age sa fie stocata ca numar intreg.\n"
+				"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("34. Adjust / extend the functionality from Exercise 31 so that the information filtered from the .xml file is"
+						" stored in a vector of structures. The Age information should be stored as an integer.\n"
 				"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			struct XML_Database_Content* structura = readStoreFilteredXMLFileContentInStruct();
@@ -723,10 +1207,16 @@ void RezolvareCerinta(unsigned int numar_cerinta)
 			break;
 		}
 		case 35:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
-				printf("35. Sa se scrie o functie care sa ofere posibilitatea de a sorta vectorul de structuri de la cerinta 33 crescator "
+				printf("35. Sa se scrie o functie care sa ofere posibilitatea de a sorta vectorul de structuri de la cerinta 33 crescator"
 						" in functie de varsta.\n"
+				"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("35. Write a function that offers the possibility to sort the vector of structures from Exercise 34 in ascending order"
+						" depending on age.\n"
 				"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			struct XML_Database_Content* structura = readStoreFilteredXMLFileContentInStruct();
@@ -734,18 +1224,32 @@ void RezolvareCerinta(unsigned int numar_cerinta)
 			sortXmlContentStoredStruct(structura);
 
 			//Displaying the age sorted structure
-			printf("The age-ascending sorted structure is: \n");
+			if(menu_language == 1)
+			{
+				printf("Structura sortata crescator dupa varsta este: \n");
+			}
+			else
+			{
+				printf("The age-ascending sorted structure is: \n");
+			}
 			printf("-------------------------------------------\n");
 			displayStructuraObtainedFromXML(structura);
 			free(structura);
 			break;
 		}
 		case 36:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
-				printf("36. Sa se extinda functionalitatea de la cerinta 34,35 astfel incat continutul sortat al structurii sa fie\n"
-						" salvat intr-un document .html folosind un tabel ca forma de structurare. Fiecare informatie sa fie scrisa\n"
+				printf("36. Sa se extinda functionalitatea de la cerinta 34,35 astfel incat continutul sortat al structurii sa fie"
+						" salvat intr-un document .html folosind un tabel ca forma de structurare. Fiecare informatie sa fie scrisa"
 						" in propria coloana.\n"
+				"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("36. Extend the functionality from Exercise 34,35 so that the sorted content of the structure is"
+						" saved in a .html document using a table as a form of structuring. Every piece of information must be written"
+						" in its own column.\n"
 				"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			struct XML_Database_Content* structura = readStoreFilteredXMLFileContentInStruct();
@@ -756,9 +1260,15 @@ void RezolvareCerinta(unsigned int numar_cerinta)
 			break;
 		}
 		case 37:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
-				printf("37. Sa se scrie o functie care calculeaza numarul de aparitii ale unui cuvant / sir de character / substring intr-un\n"
+				printf("37. Sa se scrie o functie care calculeaza numarul de aparitii ale unui cuvant / sir de character / substring intr-un"
+						" string.\n"
+				"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("37. Write a function that calculates the number of occurrences of a word / sequence of character / substring within a"
 						" string.\n"
 				"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
@@ -766,18 +1276,26 @@ void RezolvareCerinta(unsigned int numar_cerinta)
 			break;
 		}
 		case 38:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
 				printf("38. Sa se scrie o functie care sa imparta un numar la o valoare fara a folosi division operator. Alternativ sa se\n"
 						" scrie o functie care sa inmulteasca un numar cu o valoare fara a folosi multiply operator.\n"
 				"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
+			else
+			{
+				printf("38. Write a function that divides a number by a value without using the division operator. Alternatively"
+						" write a function that multiplies a number by a value without using the multiply operator.\n"
+				"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
 			int number;
 			int op;
 
-			printf("Enter an integer number: \n");
+			printf("Enter an int number: \n");
+			fflush(stdin);
 			scanf("%d", &number);
 			printf("Enter an integer multiplier / divider: \n");
+			fflush(stdin);
 			scanf("%d", &op);
 
 			printf("Number is: %d\n", number);
@@ -787,22 +1305,54 @@ void RezolvareCerinta(unsigned int numar_cerinta)
 			break;
 		}
 		case 39:{
-			if (PRINT_CERINTA == 1)
+			if (menu_language == 1)
 			{
-				printf("39. Sa se creeze o lista inlantuita de elemente de tip intreg. Sa se foloseasca o bucla pentru adaugarea unui numar customizat de elemente\n"
-						" sa se ofere posibilitatea de a iesi din bucla la comanda utilizatorului, si sa se afiseze toate elementele introduse in acea bucla. \n"
-						" TERMINOLOGIE: Lista inlantuita este un tip de date complex, ce consista intr-o structura cu cel putin 2 element: valoare si pointer\n"
-						" catre urmatorul element. Memoria se va aloca dinamic pentru fiecare element adaugat in lista. Principalul beneficiu al unei liste\n"
-						" inlanuite consta in posibilitatea de a adauga un numar variabil de element putand sterge sau adauga un element fara a face copii\n"
-						" sau interschimbari, ci doar modificand adresele pointerilor assignati pentru elementul urmator / anterior.\n"
+				printf("39. Sa se creeze o lista inlantuita de elemente de tip intreg. Sa se foloseasca o bucla pentru adaugarea unui numar customizat de elemente"
+						" sa se ofere posibilitatea de a iesi din bucla la comanda utilizatorului, si sa se afiseze toate elementele introduse in acea bucla."
+						" TERMINOLOGIE: Lista inlantuita este un tip de date complex, ce consista intr-o structura cu cel putin 2 element: valoare si pointer"
+						" catre urmatorul element. Memoria se va aloca dinamic pentru fiecare element adaugat in lista. Principalul beneficiu al unei liste"
+						" inlanuite consta in posibilitatea de a adauga un numar variabil de element putand sterge sau adauga un element fara a face copii"
+						" sau interschimbari, ci doar modificand adresele pointerilor assignati pentru elementul urmator // anterior.\n"
+				"-------------------------------------------------------------------------------------------------------------\n\n");
+			}
+			else
+			{
+				printf("39. To create a linked list of integer elements. Use a loop to add a custom number of elements"
+						" and offer the possibility to exit the loop at the user's command, and to display all the elements inserted within that loop."
+						" TERMINOLOGY: The chained list is a complex data type, which consists of a structure with at least 2 elements: value and pointer"
+						" to the next element. Memory will be allocated dynamically for each element added to the list. The main benefit of a linked-list"
+						" consists in the possibility of adding a variable number of elements, being able to delete or add an element without making copies"
+						" or exchanges, but only by changing the addresses of the assigned pointers for the next / previous element.\n"
 				"-------------------------------------------------------------------------------------------------------------\n\n");
 			}
 			createAddElementsOnLinkedList();
 			break;
 		}
 		default: {
-			printf("Cerinta cu numarul %d nu exista.", numar_cerinta);
+			isExerciseFound = false;
+			if (menu_language == 1)
+			{
+				printf("Cerinta cu numarul %d nu exista.\n", exercise_number);
+			}
+			else
+			{
+				printf("Exercise with number %d does not exist.\n", exercise_number);
+			}
 			break;
+		}
+	}
+	if (menu_language == 1)
+	{
+		if (isExerciseFound)
+		{
+			printf("\nExercitiu terminat.\n\n");
+		}
+	}
+	else
+	{
+		if (isExerciseFound)
+		{
+			printf("\nExercise finished.\n\n");
 		}
 	}
 }
@@ -824,6 +1374,7 @@ void readCheckSimbolString()
 	char message[CHAR_ARRAY_SIZE];
 	printf("Enter the symbol / message: ");
 	setbuf(stdout, NULL);
+	fflush(stdin);
 	scanf("%s", message);
 	if (CheckHexadecimalString(message, calculateNoOfCharsFromMessage(message)) == false)
 	{
@@ -1393,17 +1944,21 @@ void ReadCalculateFileWords()
 	Function that reads a txt file and calculates the number of words within the file.
 	Solution for exercise 13.
 	*/
-	#undef FILE_LOCATION
-	#define FILE_LOCATION "D:\\Toolchain_GCC\\workspace\\project_test\\Debug\\text_to_read.txt"
+	#undef FILENAME
+	#define FILENAME "\\text_to_read.txt"
 	#undef BUFFER_SIZE
 	#define BUFFER_SIZE 1000
+
+	char FILE_LOCATION [MAX_FILEPATH_SIZE] = {'\0'};
+	createRelativePathToFile(FILE_LOCATION, FILENAME);
+
 	FILE* fp;
 	fp=fopen(FILE_LOCATION, "r");
     if(!fp)
     {
         printf("File could not be opened!\n");
         perror("");
-        printf("Check Location: %st\n", FILE_LOCATION);
+        printf("Check Location: %s\n", FILE_LOCATION);
     }
     else
     {
@@ -1564,6 +2119,10 @@ void ReadInterchangeMatrixLine()
 	printf("Enter the elements for the SECOND matrix: \n");
 	readSquareMatrix(MATRIX_DIMENSION, matrixB);
 
+	printf("\nOriginal Matrices: \n");
+	printMatrix(MATRIX_DIMENSION, matrixA);
+	printMatrix(MATRIX_DIMENSION, matrixB);
+
 	unsigned int line = 0;
 	printf("Enter the line to interchange: \n");
 	fflush(stdin);
@@ -1585,7 +2144,7 @@ void ReadInterchangeMatrixLine()
 			}
 		}
 	}
-	printf("After interchanging lines: \n");
+	printf("\nAfter interchanging lines: \n");
 	printMatrix(MATRIX_DIMENSION, matrixA);
 	printMatrix(MATRIX_DIMENSION, matrixB);
 
@@ -1709,8 +2268,10 @@ void addElementToVector(unsigned int* dimension, int** array) //will use double 
 	int element;
 	unsigned int userIndex;
 	printf("Enter the new element: ");
+	fflush(stdin);
 	scanf("%d", &element);
 	printf("Enter the index: ");
+	fflush(stdin);
 	scanf("%d", &userIndex);
 	//Increasing the dimension of the array, as we added one more element.
 	*(dimension) = *(dimension)+1;
@@ -1758,6 +2319,7 @@ void removeElementFromVector(unsigned int* dimension, int** array) //will use do
 	 * a return is necessary to store the changes.*/
 	unsigned int userIndex;
 	printf("Enter the element index to be removed: ");
+	fflush(stdin);
 	scanf("%d", &userIndex);
 	//Increasing the dimension of the array, as we added one more element.
 	*(dimension) = *(dimension)-1;
@@ -1810,6 +2372,7 @@ void readRotateMatrices()
 	while(rotate != 3)
 	{
 		printf("Choose the direction to rotate: \n1 <- LEFT\n2 -> RIGHT\n3 - EXIT LOOP \n");
+		fflush(stdin);
 		scanf("%d", &rotate);
 		if (rotate == 1)
 		{
@@ -1892,6 +2455,7 @@ void readConvertDoubleToString()
 	double number;
 	char sign = '\0';
 	printf("Enter a floating value: ");
+	fflush(stdin);
 	scanf("%lf", &number);
 	int IntegerPart = number;
 	int ZecimalPart = (number-IntegerPart)*1000000; // take the first 6 zecimals
@@ -2016,10 +2580,14 @@ void readMatrixFromFile()
 	Function that reads and stores a square matrix of integers from a file
 	Solution to exercise 19
 	*/
-	#undef FILE_LOCATION
-	#define FILE_LOCATION "D:\\Toolchain_GCC\\workspace\\project_test\\Debug\\matrice3x3.txt"
+	#undef FILENAME
+	#define FILENAME "\\matrice3x3.txt"
 	#undef MATRIX_DIMENSION
 	#define MATRIX_DIMENSION 3
+
+	char FILE_LOCATION [MAX_FILEPATH_SIZE] = {'\0'};
+	createRelativePathToFile(FILE_LOCATION, FILENAME);
+
 	FILE* fp;
 	fp=fopen(FILE_LOCATION, "r");
     if(!fp)
@@ -2232,6 +2800,7 @@ void convertFahrenheitCelciusORViceversa()
 	unsigned int maxInputLength = 5;
 	char value[maxInputLength];
 	printf("Enter the value [C-F]: ");
+	fflush(stdin);
 	scanf("%s", value);
 
 	unsigned int index = 0;
@@ -2378,7 +2947,8 @@ void storeCharsIntoInt()
 	#undef DIMENSION
 	#define DIMENSION 4
 	char userInput[DIMENSION];
-	printf("Please enter 4 chars: ");
+	printf("Please enter a 4-char word: ");
+	fflush(stdin);
 	scanf("%s", userInput);
 	unsigned int storedValue = 0;
 
@@ -2395,6 +2965,7 @@ void storeCharsIntoInt()
 
 	//Printing the userInput using the int variable
 	index = 3;
+	printf("Output: ");
 	while(index >=0)
 	{
 		int charSize = sizeof(char)*8; // the size of char in bits.
@@ -2404,6 +2975,7 @@ void storeCharsIntoInt()
 		printf("%c", (storedValue >> (charSize*index)) & mask);
 		index--;
 	}
+	printf(" <- symbols read from int variable.\n");
 
 }
 
@@ -2424,12 +2996,19 @@ void readEncodeContentOfTxt()
 	' '. '\n'.
 	Solution for exercise 27
 	*/
-	#undef READ_FILE_LOCATION
-	#define READ_FILE_LOCATION "D:\\Toolchain_GCC\\workspace\\project_test\\Debug\\text_to_encode.txt"
-	#undef WRITE_FILE_LOCATION
-	#define WRITE_FILE_LOCATION "D:\\Toolchain_GCC\\workspace\\project_test\\Debug\\encoded_text.txt"
+	#undef READ_FILENAME
+	#define READ_FILENAME "\\text_to_encode.txt"
+	#undef WRITE_FILENAME
+	#define WRITE_FILENAME "\\encoded_text.txt"
 	#undef BUFFER_SIZE
 	#define BUFFER_SIZE 1000
+
+	char READ_FILE_LOCATION [MAX_FILEPATH_SIZE] = {'\0'};
+	createRelativePathToFile(READ_FILE_LOCATION, READ_FILENAME);
+
+	char WRITE_FILE_LOCATION [MAX_FILEPATH_SIZE] = {'\0'};
+	createRelativePathToFile(WRITE_FILE_LOCATION, WRITE_FILENAME);
+
 	FILE* fp_read;
 	FILE* fp_write;
 	fp_read=fopen(READ_FILE_LOCATION, "r");
@@ -2516,12 +3095,19 @@ void readDecodeContentFromTxt()
 	' '. '\n'.
 	Solution for exercise 28.
 	*/
-	#undef READ_FILE_LOCATION
-	#define READ_FILE_LOCATION "D:\\Toolchain_GCC\\workspace\\project_test\\Debug\\encoded_text.txt"
-	#undef WRITE_FILE_LOCATION
-	#define WRITE_FILE_LOCATION "D:\\Toolchain_GCC\\workspace\\project_test\\Debug\\decoded_text.txt"
+	#undef READ_FILENAME
+	#define READ_FILENAME "\\encoded_text.txt"
+	#undef WRITE_FILENAME
+	#define WRITE_FILENAME "\\decoded_text.txt"
 	#undef BUFFER_SIZE
 	#define BUFFER_SIZE 1000
+
+	char READ_FILE_LOCATION [MAX_FILEPATH_SIZE] = {'\0'};
+	createRelativePathToFile(READ_FILE_LOCATION, READ_FILENAME);
+
+	char WRITE_FILE_LOCATION [MAX_FILEPATH_SIZE] = {'\0'};
+	createRelativePathToFile(WRITE_FILE_LOCATION, WRITE_FILENAME);
+
 	FILE* fp_read;
 	FILE* fp_write;
 	fp_read=fopen(READ_FILE_LOCATION, "r");
@@ -2619,7 +3205,7 @@ void readSplitMessageIteratedPrint()
 	char userInput[BUFFER_SIZE];
 	printf("Enter a string value: \n");
 	//scanf("%s", userInput); //scanf is not suitable for sentences, it only reads until space character " " \ "\0"
-
+	fflush(stdin);
 	gets(userInput);
 	char words[BUFFER_SIZE][BUFFER_SIZE] ={{'\0'}};
 
@@ -2694,8 +3280,10 @@ void readCheckElementWithinString()
 	char sourceInput[BUFFER_SIZE];
 	char elementToFindInput[BUFFER_SIZE];
 	printf("Enter the source string: \n");
+	fflush(stdin);
 	gets(sourceInput);
 	printf("Enter element to find: \n");
+	fflush(stdin);
 	gets(elementToFindInput);
 
 	//Converting from arrays to char*
@@ -2708,11 +3296,11 @@ void readCheckElementWithinString()
 	bool elementFound = containsString(pointerToSource, pointerToElementToFind);
 	if(elementFound)
 	{
-		printf("Element: '%s' was FOUND in the source string.", pointerToElementToFind);
+		printf("Element: '%s' was FOUND in the source string.\n", pointerToElementToFind);
 	}
 	else
 	{
-		printf("Element: '%s' was NOT found in the source string.", pointerToElementToFind);
+		printf("Element: '%s' was NOT found in the source string.\n", pointerToElementToFind);
 	}
 }
 
@@ -2781,8 +3369,10 @@ void readFilterString()
 
 	char filterInput[BUFFER_SIZE];
 	printf("Enter your input: \n");
+	fflush(stdin);
 	gets(userInput);
 	printf("What do you want to remove?\n");
+	fflush(stdin);
 	gets(filterInput);
 
 	//Converting from arrays to char*
@@ -2896,10 +3486,13 @@ void readFilterXMLFileContent()
 	The filter consist in removing the xml tags.
 	Solution for exercise 32.
 	*/
-	#undef FILE_LOCATION
-	#define FILE_LOCATION "D:\\Toolchain_GCC\\workspace\\project_test\\Debug\\database.xml"
+	#undef FILENAME
+	#define FILENAME "\\database.xml"
 	#undef BUFFER_SIZE
 	#define BUFFER_SIZE 1000
+
+	char FILE_LOCATION [MAX_FILEPATH_SIZE] = {'\0'};
+	createRelativePathToFile(FILE_LOCATION, FILENAME);
 
 	FILE* fp;
 	fp=fopen(FILE_LOCATION, "r");
@@ -2980,8 +3573,9 @@ struct XML_Database_Content* readStoreFilteredXMLFileContentInStruct()
 	here the elements are stored.
 	Solution for exercise 34.
 	*/
-	#undef FILE_LOCATION
-	#define FILE_LOCATION "D:\\Toolchain_GCC\\workspace\\project_test\\Debug\\database.xml"
+	#undef FILENAME
+	#define FILENAME "\\database.xml" //relative filepath to the file
+
 	#undef BUFFER_SIZE
 	#define BUFFER_SIZE 1000
 	#undef XML_DATABASE_SIZE
@@ -2989,6 +3583,9 @@ struct XML_Database_Content* readStoreFilteredXMLFileContentInStruct()
 
 	//Creating a dynamic array that will store XML elements
 	struct XML_Database_Content* XML_Database = NULL;
+
+	char FILE_LOCATION [MAX_FILEPATH_SIZE] = {'\0'};
+	createRelativePathToFile(FILE_LOCATION, FILENAME);
 
 	FILE* fp;
 	fp=fopen(FILE_LOCATION, "r");
@@ -3167,12 +3764,15 @@ void saveSortedXmlStructContentInHTML(struct XML_Database_Content* structura)
 	 structure created at exercises 34,35.
 	 Solution for exercise 36.
 	 */
-	#undef FILE_LOCATION
-	#define FILE_LOCATION "D:\\Toolchain_GCC\\workspace\\project_test\\Debug\\saved_sorted_database.html"
+	#undef FILENAME
+	#define FILENAME "\\saved_sorted_database.html"
 	#undef BUFFER_SIZE
 	#define BUFFER_SIZE 1000
 
 	FILE* fp;
+	char FILE_LOCATION [MAX_FILEPATH_SIZE] = {'\0'};
+	createRelativePathToFile(FILE_LOCATION, FILENAME);
+
 	fp=fopen(FILE_LOCATION, "w");
 	if(!fp)
 	{
@@ -3244,8 +3844,10 @@ void readCountElementWithinString()
 	char sourceInput[BUFFER_SIZE];
 	char elementToCountInput[BUFFER_SIZE];
 	printf("Enter the source string: \n");
+	fflush(stdin);
 	gets(sourceInput);
 	printf("Enter element to count: \n");
+	fflush(stdin);
 	gets(elementToCountInput);
 
 	//Converting from arrays to char*
@@ -3362,6 +3964,7 @@ void createAddElementsOnLinkedList()
 	unsigned int counter = 0; // a counter to be able to track the number of elements introduced through the loop
 	do{
 		printf("Element%d = ", counter);
+		fflush(stdin);
 		scanf("%s", userInput);
 
 		if (userInput[0]=='q' || userInput[0]=='Q') // if user press the Q key
@@ -3404,219 +4007,123 @@ void createAddElementsOnLinkedList()
 	printf("]\n");
 }
 
+void printRomanianMenu()
+{
+	/*
+	 RO:
+	 Functie care sa printeze meniul in limba romana.
 
-/* EN: EXERCISES FOR THE C-LABORATORY:
+	 EN:
+	 Function to print the menu in english.
+	 */
+	printf(" 1. Apartenenta unui simbol la intervalul dat.\n");
+	printf(" 2. Calculul numarului de cifre a unei variabile de tip intreg.\n");
+	printf(" 3. Recursivitate pentru Cerinta 2.\n");
+	printf(" 4. Calculul numarului de caractere dintr-un cuvant.\n");
+	printf(" 5. Apartenenta unui sir de caractere la intervalul dat.\n");
+	printf(" 6. Concatenarea a 3 cifre intr-un numar.\n");
+	printf(" 7. Verificarea divizibilatii si puterii lui 16.\n");
+	printf(" 8. Reconstruirea unui numar in oglinda.\n");
+	printf(" 9. Convertor de numere hexadecimal to decimal.\n");
+	printf(" 10. Convertor de numere decimal to binary.\n");
+	printf(" 11. Negarea unui bit specificat pentru o variabila de tip intreg.\n");
+	printf(" 12. Interschimbarea unei cifre intr-un numar dat.\n");
+	printf(" 13. Citire continut fisier si calcularea numarului de cuvinte.\n");
+	printf(" 14. Citire 2 matrici si interschimbare linie coloana.\n");
+	printf(" 15. Introducere \\ Stergere element vector dinamic.\n");
+	printf(" 16. Rotirea a 2 matrici.\n");
+	printf(" 17. Convertirea din double in string.\n");
+	printf(" 18. Crearea diagonalei principala a unei matrici din elementele min.\n");
+	printf(" 19. Citire \\ stocare matrice patratica de numere intregi dintr-un fisier.\n");
+	printf(" 20. Citirea si transpunerea unei matrici.\n");
+	printf(" 21. Produsul a 2 matrici patratice.\n");
+	printf(" 22. Calcularea coloanei cu suma cea mai mica a elementelor unei matrici.\n");
+	printf(" 23. Convertor fahrenheit to celsius \\ celsius to fahrenheit.\n");
+	printf(" 24. Afisare tabel ASCII.\n");
+	printf(" 25. Afisare valori random cu delay de 10 secunde.\n");
+	printf(" 26. Concatenarea a 4 chars intr-un unsigned int.\n");
+	printf(" 27. Codificator pentru mesajul dintr-un fisier text.\n");
+	printf(" 28. Decodificator pentru mesajul codat anterior din fisierul text.\n");
+	printf(" 29. Afisarea iterativa a unui mesaj.\n");
+	printf(" 30. Verificarea unui substring intr-un string.\n");
+	printf(" 31. Filtrarea unui string.\n");
+	printf(" 32. Filtrarea continutului unui fisier XML dat.\n");
+	printf(" 33. Convertirea unui string in int.\n");
+	printf(" 34. Stocarea continutuil unui XML dat intr-un vector de structuri.\n");
+	printf(" 35. Sortarea vectorului de structuri de la cerinta 34.\n");
+	printf(" 36. Stocarea / convertirea din XML in HTML.\n");
+	printf(" 37. Calcularea numarului de aparitii ale unui cuvant in string.\n");
+	printf(" 38. Impartirea si inmultirea fara operator.\n");
+	printf(" 39. Crearea unei liste inlantuite.\n");
+}
 
-* 1. Write a function that checks if a symbol entered from the keyboard is a number [0-9] or
-* letter between [a-f] or [A-F]. Display a corresponding message if the symbol is out of range.
-* KNOWLEDGE REQUIRED: IF / SWITCH / FUNCTIONS / ASCII
+void printEnglishMenu()
+{
+	/*
+	 RO:
+	 Functie care sa printeze Meniul in limba engleza.
 
-* ------------------------------------------------- ------------
-* 2. Write a function that reads a number from the keyboard and calculates how many digits the entered number contains.
-* Optionally calculate the sum of the digits of that number.
-* KNOWLEDGE REQUIRED: LOOPS / FUNCTIONS / CHARACTERS
+	 EN:
+	 Function to print the menu in english.
+	 */
+	printf(" 1. Validation of a symbol within a given interval.\n");
+	printf(" 2. Calculation of the number of digits of an integer type variable.\n");
+	printf(" 3. Recursiveness for Exercise 2.\n");
+	printf(" 4. Calculation of the number of characters in a word.\n");
+	printf(" 5. Validation of characters within a string for a given interval.\n");
+	printf(" 6. Concatenation of 3 digits within a number.\n");
+	printf(" 7. Checking the divisibility and power of 16.\n");
+	printf(" 8. Reconstruction of a number in the mirror.\n");
+	printf(" 9. Hexadecimal to decimal number converter.\n");
+	printf(" 10. Decimal to binary number converter.\n");
+	printf(" 11. Negating a specified bit for an integer variable.\n");
+	printf(" 12. Interchanging a digit within a given number.\n");
+	printf(" 13. Reading file content and calculating the number of words.\n");
+	printf(" 14. Reading 2 matrices and exchanging line and column.\n");
+	printf(" 15. Insert \\ Delete dynamic array element.\n");
+	printf(" 16. Rotation of 2 matrices.\n");
+	printf(" 17. Conversion from double to string.\n");
+	printf(" 18. Creating the main diagonal of a matrix from the min elements.\n");
+	printf(" 19. Reading \\ storing of square matrix of integers from a file.\n");
+	printf(" 20. Reading and transposing a matrix.\n");
+	printf(" 21. The product of 2 square matrices.\n");
+	printf(" 22. Calculation of the column with the smallest sum of the elements of a matrix.\n");
+	printf(" 23. Converter fahrenheit to celsius \\ celsius to fahrenheit.\n");
+	printf(" 24. ASCII table display.\n");
+	printf(" 25. Display random values with a delay of 10 seconds.\n");
+	printf(" 26. Concatenation of 4 chars within an unsigned int.\n");
+	printf(" 27. Encoding a the message from a text file.\n");
+	printf(" 28. Decodin the previously encoded message from the text file.\n");
+	printf(" 29. Iterative display of a message.\n");
+	printf(" 30. Checking a substring within a string.\n");
+	printf(" 31. Filtering a string.\n");
+	printf(" 32. Filtering the content of a given XML file.\n");
+	printf(" 33. Converting a string to int.\n");
+	printf(" 34. Storing the content of a given XML within an array of structures.\n");
+	printf(" 35. Sorting the array of structures from exercise 34.\n");
+	printf(" 36. Storage / conversion from XML to HTML.\n");
+	printf(" 37. Calculation of the number of occurrences of a word in the string.\n");
+	printf(" 38. Division and multiplication without an operator.\n");
+	printf(" 39. Creating a chained list.\n");
+}
 
-* ------------------------------------------------- -------------
-* 3. Write a function that adjusts the code from exercise 2 so that it uses recursion
-* instead of loops.
-* KNOWLEDGE REQUIRED: FUNCTIONS / RECURSIVITY
+void createRelativePathToFile(char source_array [], char filename[])
+{
+	/*
+	 RO:
+	 Functie care sa creeze calea relativa catre un fisier.
 
-* ------------------------------------------------- -------------
-* 4. Adjust the program from exercise 2 so that it also works for a sequence of characters: Read
-* a word / sentence of characters and calculate the number of characters in the word / sentence.
-* KNOWLEDGE REQUIRED: LOOPS / FUNCTIONS / CHARACTERS
+	 EN:
+	 Function to create the relative filepath to a file.
+	*/
+	strcat(source_array, ROOT_DIRECTORY);
+	if(containsString(source_array, EXE_RELATIVE_DIRECTORY_PATH) == false)
+	{
+		//this will help finding the relative locations of files to open
+		//the root directory when running from the debbuger is the same as .c file
+		//but the .exe is generated in a different directory.
 
-* ------------------------------------------------- -------------
-* 5. Adjust the program from exercise 1 so that it can check for a sequence of character
-* if it belongs to the interval [0-1] / [a-f] / [A-F]
-* KNOWLEDGE REQUIRED: IF / SWITCH / FUNCTII / ASCII / (ARRAYS or STRINGS or POINTERS)
-
-* ------------------------------------------------- -------------
-* 6. Write a function that reads 3 digits separately and concatenate them into an unsigned int. Only allow the user
-* to enter digits from 0-9 interval.
-* KNOWLEDGE REQUIRED: LOOPS / IF / OPERATORS
-
-* ------------------------------------------------- ------------
-* 7. Write a function to read a number from the keyboard, check if it is divisible by 16,
-* and if it is a power of 16, display the power. EX: 16, 256, 4096, 65536, 1048576.
-* KNOWLEDGE REQUIRED: LOOPS / IF / OPERATORS / ALGORITHMIC THINKING
-
-* ------------------------------------------------- ------------
-* 8. Build a program that reads an unsigned integer type number and reconstructs it in the mirror.
-* OPTIONAL: check if the number is a palindrome. EX: 121, 242, 12321.
-* KNOWLEDGE REQUIRED: LOOPS / IF / OPERATORS / ALGORITHMIC THINKING / SWITCH / FUNCTIONS
-
-* ------------------------------------------------- ------------
-* 9. Build a hexadecimal to decimal number converter.
-* KNOWLEDGE REQUIRED: LOOPS / IF / OPERATORS / ALGORITHMIC THINKING / SWITCH / FUNCTIONS
-
-* ------------------------------------------------- ------------
-* 10. Build a decimal to binary number converter.
-* KNOWLEDGE REQUIRED: LOOPS / IF / ARRAYS / OPERATORS / ALGORITHMIC THINKING / SHIFTING / BIT OPERATIONS / FUNCTIONS
-
-* ------------------------------------------------- ------------
-* 11. Write a function to negate a specific bit for a variable of type u32 / unsigned int.
-* KNOWLEDGE REQUIRED: BIT OPERATIONS / FUNCTIONS / OPERATORS / ALGORITHMIC THINKING / FUNCTIONS
-
-* ------------------------------------------------- -----------
-* 12. Write a function that reads an unsigned number from the keyboard and offers the possibility to change
-* later a digit from that number.
-* KNOWLEDGE REQUIRED: BIT OPERATIONS / FUNCTIONS
-
-* ------------------------------------------------- -----------
-* 13. Write a function that reads the content of a .txt file and calculates the number of
-* words in the file.
-* KNOWLEDGE REQUIRED: FILES / POINTERS / ARRAYS / OPERATORS / ALGORITHMIC THINKING / FUNCTIONS
-
-* ------------------------------------------------- -----------
-* 14a. Write a function that interchange the values between 2 variables: preferably without the auxiliary variable.
-* KNOWLEDGE REQUIRED: FUNCTIONS / OPERATORS / ALGORITHMIC THINKING / BITWISE OPERATORS
-
-* 14b Write a function that reads 2 3x3 matrices and offers the possibility to exchange 1 line between
-* the 2 matrices. Make the exchange without the auxiliary variable.
-* KNOWLEDGE REQUIRED: FUNCTIONS / OPERATORS / ALGORITHMIC THINKING / BITWISE OPERATORS / ARRAYS / POINTERS
-
-* ------------------------------------------------- -------------------------
-* 15. Write a function that offers the possibility of introducing a new element and/or deleting an existing element
-* from a dynamic vector. Dynamically increase/decrease the size of the final vector.
-* TERMINOLOGY:
-* DYNAMIC VECTOR = ARRAY STORED IN HEAP
-* DYNAMIC SIZE = THE SIZE CHANGES DYNAMICLY OFFERING THE POSSIBILITY OF ADDING AND DELETING AN ELEMENT
-* DYNAMIC SIZE - IS THE OPPOSITE OF FIXED SIZE. ARRAYS ARE COLLECTIONS OF FIXED SIZES.
-* KNOWLEDGE REQUIRED: FUNCTIONS / ALGORITHMIC THINKING / 2D ARRAYS / POINTERS / DOUBLE POINTERS / PASS BY REFERENCE / LOOPS
-
-* ------------------------------------------------- -------------------------
-* 16. Write a function that reads 2 matrices from the keyboard and offers the possibility to rotate the 2 matrices
-* simultaneously to the left or to the right.
-* KNOWLEDGE REQUIRED: FUNCTIONS / OPERATORS / ALGORITHMIC THINKING / ARRAYS / PASS BY REFERENCE / LOOPS
-
-* ------------------------------------------------- -------------------------
-* 17. Write a function that converts a double number to string.
-* KNOWLEDGE REQUIRED: CHAR ARRAYS, ALGORITHMIC THINKING, OPERATORS, FUNCTIONS, LOOPS
-
-* ------------------------------------------------- -------------------------
-* 18. Write a function that creates the main diagonal of a square matrix from the min elements on
-* the respective line.
-* KNOWLEDGE REQUIRED: 2D VECTORS, ALGORITHMIC THINKING, OPERATORS, FUNCTIONS, LOOPS
-
-* ------------------------------------------------- -------------------------
-* 19. Write a function that reads a square matrix of integers from a file, stores and displays it accordingly.
-* KNOWLEDGE REQUIRED: 2D VECTORS, ALGORITHMIC THINKING, OPERATORS, FUNCTIONS, LOOPS, FILES, POINTERS
-
-* ------------------------------------------------- -------------------------
-* 20. Write a function that reads a 2x3 matrix and displays the matrix and its transpose.
-* KNOWLEDGE REQUIRED: 2D VECTORS, ALGORITHMIC THINKING, OPERATORS, FUNCTIONS, LOOPS
-
-* ------------------------------------------------- -------------------------
-* 21. Write a function that reads 2 matrices and obtains their product. The line in the first matrix is multiplied by
-* the column from the second matrix.
-* KNOWLEDGE REQUIRED: 2D VECTORS, ALGORITHMIC THINKING, OPERATORS, FUNCTIONS, LOOPS
-
-* ------------------------------------------------- -------------------------
-* 22. Write a function that calculates the column with the smallest sum of elements within a matrix:
-* KNOWLEDGE REQUIRED: 2D VECTORS, MATRICES, ALGORITHMIC THINKING, OPERATORS, FUNCTIONS, LOOPS
-
-* ------------------------------------------------- -------------------------
-* 23. Create a fahrenheit to celsius / celsius to fahrenheit converter. Make it capable of entering numbers with suffix C / F
-* to determine the measurement unit to be converted.
-* KNOWLEDGE REQUIRED: ALGORITHMIC THINKING, OPERATORS, FUNCTIONS, OPERATIONS, CHAR ARRAYS
-
-* ------------------------------------------------- -------------------------
-* 24. Write a function that displays the ASCII table.
-* KNOWLEDGE REQUIRED: OPERATORS, FUNCTIONS, OPERATIONS, CAST
-
-* ------------------------------------------------- -------------------------
-* 25. Write a function that displays randomly generated integer values with a delay of 10 seconds. Display simultaneously
-* the current random value and the value from 10 seconds ago. HINT: The rand function from <conio.h> will be used
-* for the generation of random numbers, the function sleep() from <unistd.h> or Sleep() from <windows.h> will be used for measuring
-* time intervals.
-* KNOWLEDGE REQUIRED: FUNCTIONS, RANDOM GENERATORS, ALGORITHMIC THINKING, LOOPS
-
-* ------------------------------------------------- -------------------------
-* 26. Write a function that concatenates 4 chars into an unsigned int. Use int variable to display the word
-* consisting of those 4 chars.
-* KNOWLEDGE REQUIRED: FUNCTIONS, ALGORITHMIC THINKING, LOOPS, CAST, BITWISE OPERATORS
-
-* ------------------------------------------------- -------------------------
-* 27. Build an encoder for the message from a .txt file. Coding rule: the last bit from the character being read
-* will be negated, exception will do the special characters: '\n', '\0', ' '. The result will be saved in a .txt and
-* displayed in the console.
-* KNOWLEDGE REQUIRED: FUNCTIONS, ALGORITHMIC THINKING, LOOPS, BIT OPERATIONS, FILES, POINTERS
-
-* ------------------------------------------------- -------------------------
-* 28. Build a decoder for the previously coded message. Decoding rule: the last bit from the character being read
-* twill be negated, exception will do the special characters: '\n', '\0', ' '. The result will be saved in a .txt file
-* and displayed in the console.
-* KNOWLEDGE REQUIRED: FUNCTIONS, ALGORITHMIC THINKING, LOOPS, BIT OPERATIONS, FILES, POINTERS
-
-* ------------------------------------------------- -------------------------
-* 29. Write a function that reads a message. The message will be divided into words, the words will be displayed iteratively
-* as follows: Example: Anna has apples
-* 1. A h a
-* 2. An ha ap
-* 3. Ann has app
-* 4. Anna has appl
-* 5. Anna has apple
-* 6. Anna has apples
-* HINT: 3 nested loops will be needed.
-* KNOWLEDGE REQUIRED: FUNCTIONS, ALGORITHMIC THINKING, LOOPS, CHAR ARRAYS,
-
-* ------------------------------------------------- -------------------------
-* 30. Write a function that checks if a string contains a specified word \ sequence of characters \ substring.
-* KNOWLEDGE REQUIRED: FUNCTIONS, ALGORITHMIC THINKING, LOOPS, CHAR ARRAYS, CHAR POINTERS,
-
-* ------------------------------------------------- -------------------------
-* 31. Write a function that filters a string \ deletes a specified word \ character sequence from the string.
-* KNOWLEDGE REQUIRED: FUNCTIONS, ALGORITHMIC THINKING, LOOPS, CHAR ARRAYS, CHAR POINTERS, PASS BY REFERENCE, MEMORY ALLOCATION
-
-* ------------------------------------------------- -------------------------
-* 32. Write a function that reads and filters the content of a given .xml file. FILTERING RULE: to delete
-* the tags and to display only the relevant information.
-* KNOWLEDGE REQUIRED: FUNCTIONS, LOOPS, CHAR ARRAYS, CHAR POINTERS, FILES
-
-* ------------------------------------------------- -------------------------
-* 33. Write a function that converts a string into an int. RULE: From the string passed as a parameter
-* the only characters to be considered for conversion are within [0-9] interval.
-* KNOWLEDGE REQUIRED: FUNCTIONS, LOOPS, CHAR ARRAYS, CHAR POINTERS
-
-* ------------------------------------------------- -------------------------
-* 34. Adjust / extend the functionality from Exercise 31 so that the information filtered from the .xml file is
-* stored in a vector of structures. The Age information should be stored as an integer.
-* KNOWLEDGE REQUIRED: FUNCTIONS, LOOPS, CHAR ARRAYS, CHAR POINTERS, FILES \ STRUCTURES
-
-* ------------------------------------------------- -------------------------
-* 35. Write a function that offers the possibility to sort the vector of structures from Exercise 34 in ascending order
-* depending on age.
-* KNOWLEDGE REQUIRED: FUNCTIONS, LOOPS, CHAR ARRAYS, POINTERS, STRUCTURES, SORTING
-
-* ------------------------------------------------- -------------------------
-* 36. Extend the functionality from Exercise 34,35 so that the sorted content of the structure is
-* saved in a .html document using a table as a form of structuring. Every piece of information must be written
-* in its own column.
-* KNOWLEDGE REQUIRED: FUNCTIONS, LOOPS, CHAR ARRAYS, POINTERS, STRUCTURES, HTML, FILES
-
-* ------------------------------------------------- -------------------------
-* 37. Write a function that calculates the number of occurrences of a word / sequence of character / substring within a
-* string.
-* KNOWLEDGE REQUIRED: CHAR ARRAYS, FUNCTIONS, POINTERS, LOOPS,
-
-* ------------------------------------------------- -------------------------
-* 38. Write a function that divides a number by a value without using the division operator. Alternatively
-* write a function that multiplies a number by a value without using the multiply operator.
-* KNOWLEDGE REQUIRED: OPERATORS, VARIABLES, OPERATIONS, FUNCTIONS, LOOPS
-
-* ------------------------------------------------- -------------------------
-* 39. To create a linked list of integer elements. Use a loop to add a custom number of elements
-* and offer the possibility to exit the loop at the user's command, and to display all the elements inserted within that loop.
-* TERMINOLOGY: The chained list is a complex data type, which consists of a structure with at least 2 elements: value and pointer
-* to the next element. Memory will be allocated dynamically for each element added to the list. The main benefit of a linked-list
-* consists in the possibility of adding a variable number of elements, being able to delete or add an element without making copies
-* or exchanges, but only by changing the addresses of the assigned pointers for the next / previous element.
-* KNOWLEDGE REQUIRED: STRUCTURES, POINTERS, LOOPS, DYNAMIC ALLOCATION, VARIABLES
-
-* ------------------------------------------------- -------------------------
-* 40. To identify the problems in a given code.
-* KNOWLEDGE REQUIRED:
-
-* ------------------------------------------------- -------------------------
-*/
+		strcat(source_array, EXE_RELATIVE_DIRECTORY_PATH);
+	}
+	strcat(source_array, filename);
+}
